@@ -1,0 +1,28 @@
+{
+  "name": "element-select",
+  "version": "0.1.0",
+  "description": "框选页面上任意dom元素",
+  "main": "element-select.js",
+  "scripts": {
+    "dev": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18679850773/element-select.git"
+  },
+  "keywords": [
+    "element",
+    "select",
+    "box",
+    "dom",
+    "drag",
+    "selection"
+  ],
+  "author": "chenxiaowen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/18679850773/element-select/issues"
+  },
+  "homepage": "https://github.com/18679850773/element-select#readme"
+}

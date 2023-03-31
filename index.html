@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>框选页面任意DOM元素</title>
+  <style>
+    html, body, #app {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      position: relative;
+      overflow: auto;
+    }
+    table{
+      margin: 25%;
+    }
+    th,td{
+      padding: 4px 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div style="position: absolute;top: 30%;">
+      <button onclick="startSelectBox()" >点击开始框选功能</button></button>
+      <ul>
+        <li data-key="{a:1,b:2}" data-name="小明">test text</li>
+        <li data-key="1212" data-age="22">test text2</li>
+      </ul>
+    </div>
+    <table id="table" border="1" cellspacing="0" width="50%">
+      <thead><tr><th>test1</th><th>test2</th><th>test3</th><th>test4</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</body>
+<script src="./src/element-select.js" ></script>
+<script >
+
+  for (let index = 1; index < 31; index++) {
+    const tr = document.createElement('tr')
+    tr.setAttribute("data-key", index)
+    tr.setAttribute("data-txt", '@'+index)
+    for (let v = 1; v < 5; v++) {
+      const td = document.createElement('td')
+      td.innerText = `test-${index}-${v}`
+      tr.append(td)
+    }
+    document.querySelector('#tbody').append(tr)
+  }
+
+  const es = new ElementSelect({
+    el: "#table tbody tr, li", // 鼠标框选范围内可以选择的标签，String | Dom，不同选择器用,分隔
+    boxStyle: "border: 1px solid red;",  // 范围框自定义样式,position、top、left、width、height不支持
+    startMode: "ctrl", // 控制开启框选功能的模式，【ctrl,shift,alt,handle】
+    endMode: "ctrl", // 控制关闭框选功能的模式，【auto,ctrl,shift,alt,handle】
+    dataset: ["age", "name"],
+    // dataset: {
+    //   "#table tbody tr": ["key", "txt"],
+    //   "li": ["name", "age", "key"]
+    // }  // 如果需要返回数据，首先得把数据绑定到dom上，例如：<div data-name="小明" data-age="18"></div>
+  })
+
+  const startSelectBox = es.start.bind(es)
+
+</script>
+
+</html>
