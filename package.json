@@ -17,7 +17,15 @@
     "box",
     "dom",
     "drag",
-    "selection"
+    "selection",
+    "框选元素",
+    "dom选择",
+    "拖拽选择",
+    "框选节点",
+    "范围选择",
+    "勾选元素",
+    "勾选dom",
+    "勾选节点"
   ],
   "author": "chenxiaowen",
   "license": "ISC",
