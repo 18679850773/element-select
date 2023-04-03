@@ -63,16 +63,16 @@
     el: "#table tbody tr, li",
     boxStyle: "border:1px solid #fff;background-color:rgba(255, 255, 255,0.5);border-radius: 4px;",
     model: `<div class="test-model"></div>`,
-    startMode: "ctrl",
-    endMode: "ctrl",
+    startMode: "handle",
+    endMode: "auto",
     dataset: ["age", "name"],
   })
 
   const startSelectBox = es.start.bind(es)
 
-  // es.select = (doms, dataset) => {
-  //   console.log('select', doms, dataset)
-  // }
+  es.select = (doms, dataset) => {
+    console.log('select', doms, dataset)
+  }
 
 </script>
 

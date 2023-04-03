@@ -191,6 +191,7 @@ ElementSelect.prototype._select = function (data) {
       throw 'config.dataset格式不支持！'
     }
   }
+  this.config.endMode == "auto" && this.end()
   this.select(data, dataset)
 }
 
