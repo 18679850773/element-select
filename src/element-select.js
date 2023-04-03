@@ -2,7 +2,7 @@ function ElementSelect (config) {
   this.config = this.initConfig(config)
 
   var start = function () {
-    console.log('start')
+    // console.log('start')
     document.body.style.userSelect = "none"
     this.status = "start"
     this.rootDom.style.display = "block"
@@ -11,7 +11,7 @@ function ElementSelect (config) {
   }
 
   var end = function () {
-    console.log('end')
+    // console.log('end')
     document.body.style.userSelect = "auto"
     this.status == "move" && this.mouseup()
     this.status = "end"
@@ -69,6 +69,7 @@ ElementSelect.prototype.initConfig = function (config) {
     boxStyle: "",
     startMode: "ctrl",
     endMode: "ctrl",
+    model: '<div></div>',
     ...config
   }
   // create start down move up end destroy
@@ -79,7 +80,7 @@ ElementSelect.prototype.initConfig = function (config) {
     this.locator = _config.el // 存储选择器
     _config.el = _config.el.split(",").reduce((a, b) => (a[b.trim()] = document.querySelectorAll(b.trim())) && a, Object.create(null)) // .map(e => document.querySelectorAll(e))
     if (!Object.values(_config.el).reduce((a, b) => a + b.length, 0)) throw 'config.el找不到对应的标签'
-    console.log(_config.el)
+    // console.log(_config.el)
     return _config
   } else {
     throw 'config.el选择器为必填项，且值为String类型'
@@ -92,14 +93,25 @@ ElementSelect.prototype.createBox = function () {
   var selectBox = document.createElement('span')
 
   rootDom.style = "position:fixed;top:0;left:0;right:0;bottom:0;display:none;"
-  selectBox.style = "background-color:rgba(0, 0, 0, 0.2);" + this.config.boxStyle +";position:absolute;"
+  selectBox.style = "border:1px solid #409eff;background-color:rgba(255, 255, 255,0.1);" + this.config.boxStyle +";position:absolute;"
 
-  rootDom.append(selectBox)
-  document.body.append(rootDom)
+  // 处理model结构
+  var v = document.createElement('div')
+  v.innerHTML = this.config.model
+
+  rootDom.append(selectBox, v.children[0])
+  document.body.append(rootDom); v.remove();
 
   ElementSelect.prototype.rootDom = rootDom
   ElementSelect.prototype.selectBox = selectBox
 }
+
+// ElementSelect.prototype.createNode = function (tag, option, children) {
+//   if (arguments.length === 2) {
+
+//   }
+//   document.createElement
+// }
 
 ElementSelect.prototype.mousedown = function (event) {
   if (event.button > 0) return false
@@ -108,7 +120,7 @@ ElementSelect.prototype.mousedown = function (event) {
   dombox.style.top = `${event.y}px`
   dombox.style.left = `${event.x}px`
   dombox.style.display = "block"
-  console.log('mousedown')
+  // console.log('mousedown')
   this.startXY = {x: event.x , y: event.y}
   this.mousemovebind = this.mousemove.bind(this)
   this.mouseupbind = this.mouseup.bind(this)
@@ -131,7 +143,7 @@ ElementSelect.prototype.mousemove = function (event) {
 }
 
 ElementSelect.prototype.mouseup = function () {
-  console.log("mouseup");
+  // console.log("mouseup");
   this.status = "up"
   var dombox = this.selectBox
   this.computeSelectElement(dombox.getBoundingClientRect())
@@ -147,7 +159,7 @@ ElementSelect.prototype.start = function () {
 }
 
 ElementSelect.prototype.end = function () {
-  console.log('end')
+  // console.log('end')
   this.status == "move" && this.mouseup()
   this.status = "end"
   this.rootDom.style.display = "none"
@@ -155,7 +167,7 @@ ElementSelect.prototype.end = function () {
 }
 
 ElementSelect.prototype._select = function (data) {
-  console.log(data)
+  // console.log(data)
   var dataset = {}
   if (this.config.dataset) {
     const dataType = {
@@ -179,11 +191,11 @@ ElementSelect.prototype._select = function (data) {
       throw 'config.dataset格式不支持！'
     }
   }
-  ElementSelect.prototype.select(data, dataset)
+  this.select(data, dataset)
 }
 
 ElementSelect.prototype.select = function (doms, dataset) {
-  console.log(doms, dataset)
+  // console.log(doms, dataset)
 }
 
 ElementSelect.prototype.getFilterDoms = function (locator) {

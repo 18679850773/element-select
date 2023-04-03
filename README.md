@@ -1,10 +1,12 @@
 
-## 一款框选页面任意DOM元素的插件
+## 一款框选页面任意DOM元素的插件，没有依赖，js插件
 <br><br>
 
 ### 效果图
 
-![预览图](./preview2.jpg)
+![预览图](https://pic.imgdb.cn/item/642a4531a682492fccc6c473.jpg)
+![预览图](https://pic.imgdb.cn/item/642a4807a682492fccca9290.jpg)
+![预览图](https://pic.imgdb.cn/item/642a8700a682492fcc2b01b5.jpg)
 
 <br><br>
 
@@ -103,13 +105,14 @@
 
 ### CONFIG配置
 
-| 配置项 |  <div style="width:50px;">必填</div> | 数据类型 | <div style="width:60px;">默认值</div> |  说明  | 示例 |
+| 配置项 |  <div style="width:80px;">必填</div> | 数据类型 | <div style="width:80px;">默认值</div> |  说明  | 示例 |
 | -------- | :------: | :----- | ---- | :---- | :---- | 
 | el | 是 | String| "" | Dom选择器，框选操作后返回的可选dom，多个选择器用,分隔 | "#table tbody tr, li" |
 | boxStyle | 否 | String | "" | 选择框自定义样式，【position、top、left、width、height】为内部支撑样式，不支持修改，规则跟写行内style一样需要用;分隔 | "border: 1px solid red;opacity: 0.2;" |
 | startMode | 否 | String | "ctrl" | 开始框选功能的条件，支撑【ctrl,shift,alt,handle】| 示例：startMode: "ctrl"，设置ctrl后，在需要做框选的页面按下键盘Ctrl键，开启框选功能 |
 | endMode | 否 | String | "ctrl" | 关闭框选功能的条件，支撑【auto,ctrl,shift,alt,handle】| 示例：endMode: "ctrl"，设置ctrl后，在需要做框选的页面松开键盘Ctrl键，关闭框选功能 |
 | dataset | 否 | String、Array、Object| null | 如果需要返回数据，你会用到它 | ["age", "name"] |
+| model | 否 | String | "" | html字符串，主要是为了开启框选功能后给用户一个响应，可以发挥自己的想象写个动效哈 | `<div class="test-model"></div>`
 
 <br><br>
 
@@ -133,7 +136,7 @@
 <br><br>
 
 ### dataset说明
-当你需要插件返回数据的时候，dataset整好可以帮你
+当你需要插件返回数据的时候，dataset可以帮你
 - String：
   ```html
     <!-- 使用dataset的条件是需要在dom上绑定data-*格式数据 -->
@@ -236,4 +239,23 @@
     }
     // 完结！！！
   ```
+
+<br><br>
+
+### METHODS
+- select: 框选操作完成后的回调函数
+- 参数
+  - doms：返回框选范围内符合条件的dom元素【Object】
+  - dataset：返回dom元素上绑定的data-*数据，需要配合dataset配置项使用【Object】
+  ```js
+    es.select = (doms, dataset) => {
+      console.log('select', doms, dataset)
+    }
+  ```
+
+<br><br>
+
+### 注意事项：
+- 由于作者脑力有限，实在想不出什么好的办法处理选中后的样式，所以插件最后只返回doms及dataset，其他的后续操作需要小伙伴自己处理了
+- 原计划是有module模块的，后期有时间会补上去，目前将就用script静态导入方式吧
   
