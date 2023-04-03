@@ -4,7 +4,8 @@
   "description": "框选页面上任意dom元素",
   "main": "element-select.js",
   "scripts": {
-    "dev": "live-server",
+    "dev": "gulp serve",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,5 +33,16 @@
   "bugs": {
     "url": "https://github.com/18679850773/element-select/issues"
   },
-  "homepage": "https://github.com/18679850773/element-select#readme"
+  "homepage": "https://github.com/18679850773/element-select#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-connect": "^5.7.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.29.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-notify": "^4.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
 }
