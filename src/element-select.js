@@ -91,7 +91,7 @@ ElementSelect.prototype.createBox = function () {
   var rootDom = document.createElement('div')
   var selectBox = document.createElement('span')
 
-  rootDom.style = "position:fixed;top:0;left:0;right:0;bottom:0;background:aliceblue;opacity:0.7;display:none;"
+  rootDom.style = "position:fixed;top:0;left:0;right:0;bottom:0;display:none;"
   selectBox.style = "background-color:rgba(0, 0, 0, 0.2);" + this.config.boxStyle +";position:absolute;"
 
   rootDom.append(selectBox)
