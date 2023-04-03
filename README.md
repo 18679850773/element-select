@@ -253,6 +253,9 @@
     }
   ```
 
+- start: 手动开启框选操作，需要在配置项里设置startMode: "handle"
+- end: 手动关闭框选操作，需要在配置项里设置endMode: "handle"
+
 <br><br>
 
 ### 注意事项：
