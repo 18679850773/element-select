@@ -86,10 +86,12 @@
     }
     document.querySelector('#tbody').append(tr)
   }
+
   // 构建ElementSelect实例
   const es = new ElementSelect({
     el: "#table tbody tr, li", // 鼠标框选范围内可以选择的标签，String，不同选择器用,分隔
     boxStyle: "border: 1px solid red;",  // 范围框自定义样式,position、top、left、width、height不支持
+    model: `<div style="background-color: rgba(0, 0, 0, 0.6);width: 100%;height: 100%;"></div>`, // 自定义开始框选的蒙层
     startMode: "ctrl", // 控制开启框选功能的模式，【ctrl,shift,alt,handle】
     endMode: "ctrl", // 控制关闭框选功能的模式，【auto,ctrl,shift,alt,handle】
     dataset: ["age", "name"],
