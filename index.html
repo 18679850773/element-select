@@ -7,22 +7,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>框选页面任意DOM元素</title>
   <style>
-    html, body, #app {
+    html,
+    body,
+    #app {
       width: 100%;
       height: 100%;
       margin: 0;
       position: relative;
       overflow: auto;
     }
-    table{
+
+    table {
       margin: 25%;
     }
-    th,td{
+
+    th,
+    td {
       padding: 4px 10px;
       text-align: center;
     }
-    .test-model{
-      background-color: rgba(0,0,0,0.6);
+
+    .test-model {
+      background-color: rgba(0, 0, 0, 0.6);
       width: 100%;
       height: 100%;
     }
@@ -32,33 +38,38 @@
 <body>
   <div id="app">
     <div style="position: absolute;top: 30%;">
-      <button onclick="startSelectBox()" >点击开始框选功能</button></button>
+      <button id="start-dom">点击开始框选功能</button>
       <ul>
         <li data-key="{a:1,b:2}" data-name="小明">test text</li>
         <li data-key="1212" data-age="22">test text2</li>
       </ul>
     </div>
     <table id="table" border="1" cellspacing="0" width="50%">
-      <thead><tr><th>test1</th><th>test2</th><th>test3</th><th>test4</th></tr></thead>
+      <thead>
+        <tr>
+          <th>test1</th>
+          <th>test2</th>
+          <th>test3</th>
+          <th>test4</th>
+        </tr>
+      </thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
 </body>
-<script src="./src/element-select.js" ></script>
-<script>
 
+<script type="module">
+  import ElementSelect from './src/index.js'
   for (let index = 1; index < 31; index++) {
     const tr = document.createElement('tr')
     tr.setAttribute("data-key", index)
-    tr.setAttribute("data-txt", '@'+index)
+    tr.setAttribute("data-txt", '@' + index)
     for (let v = 1; v < 5; v++) {
       const td = document.createElement('td')
       td.innerText = `test-${index}-${v}`
       tr.append(td)
-    }
-    document.querySelector('#tbody').append(tr)
+    } document.querySelector('#tbody').append(tr)
   }
-
   const es = new ElementSelect({
     el: "#table tbody tr, li",
     boxStyle: "border:1px solid #fff;background-color:rgba(255, 255, 255,0.5);border-radius: 4px;",
@@ -68,10 +79,21 @@
     dataset: ["age", "name"],
   })
 
-  const startSelectBox = es.start.bind(es)
+  document.querySelector('#start-dom').addEventListener('click', function () {
+    es.start()
+  })
 
   es.select = (doms, dataset) => {
     console.log('select', doms, dataset)
+    for (const key in doms) {
+      if (Object.hasOwnProperty.call(doms, key)) {
+        const element = doms[key];
+        element.forEach(f => {
+          f.style.color = 'red'
+        })
+
+      }
+    }
   }
 
 </script>
