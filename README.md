@@ -68,7 +68,7 @@
   </div>
 </body>
 <!-- 静态资源 -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/element-select@1.1.1/lib/static-module.js" ></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/element-select@1.1.4/lib/static-module.js" ></script> -->
 
 <!-- import导入 -->
 <script type="module" >

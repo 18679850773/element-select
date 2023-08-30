@@ -1,6 +1,6 @@
 {
   "name": "element-select",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "框选页面上任意dom元素",
   "main": "element-select.js",
   "scripts": {
